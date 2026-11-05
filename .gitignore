@@ -1,0 +1,30 @@
+# Données (à télécharger depuis Kaggle)
+data/
+train.csv
+test.csv
+store.csv
+*.duckdb
+
+# Sorties de modèle et fichiers intermédiaires
+submission.csv
+submissions/
+resultats_clustering.json
+profil_magasin_prepare.csv
+profil_magasin_clusters*.csv
+
+# Environnement virtuel
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Le dossier figures/ est VERSIONNÉ : les images sont nécessaires au README.
+_archive/
+*.csv
