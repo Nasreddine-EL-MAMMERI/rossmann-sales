@@ -264,8 +264,8 @@ l'algorithme** — sans quoi la démonstration serait circulaire :
 
 | | Standard | Sensible promo | Proximité |
 |---|---:|---:|---:|
-| `StoreType` `a` | 42,5 % | **74,9 %** | 39,4 % |
-| `StoreType` `b` | 0 % | 0 % | **51,5 %** (17/17) |
+| `StoreType` = `a` | 42,5 % | **74,9 %** | 39,4 % |
+| `StoreType` = `b` | 0 % | 0 % | **51,5 %** (17/17) |
 | Clients / jour | 780 | 658 | **1 388** |
 | Panier moyen | 9,86 € | 9,23 € | **6,90 €** |
 | `Promo2` (adhésion) | 0,51 | 0,54 | 0,27 |
