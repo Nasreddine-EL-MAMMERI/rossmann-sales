@@ -12,7 +12,6 @@ Corrections par rapport à la v4 :
      silhouette 0.296 -> 0.360) mais conservée comme variable descriptive.
   4. Figures régénérées avec les noms des segments.
 
-Sorties : figures/ + profil_magasin_clusters_final.csv
 """
 
 from pathlib import Path
@@ -45,11 +44,7 @@ plt.rcParams.update({
 COULEURS = plt.get_cmap("tab10").colors
 RNG = np.random.default_rng(42)
 
-# ------------------------------------------------------------------
-# Écriture robuste : sous Windows, un PNG ouvert dans une visionneuse
-# (ou verrouillé par OneDrive) provoque OSError errno 22. On tente un
-# nom alternatif plutôt que d'interrompre toute l'exécution.
-# ------------------------------------------------------------------
+
 def sauvegarder(fig, nom):
     chemin = FIG / nom
     try:
@@ -103,7 +98,8 @@ for col in ["uplift_promo", "ratio_samedi_hp"]:
 
 # log_competition retirée après l'analyse de sensibilité (clustering_sensibilite.py) :
 #   eta2 = 0.006, ARI sans elle = 0.969, silhouette 0.296 -> 0.360.
-# Elle reste utilisée comme variable DESCRIPTIVE des segments (colonne du tableau).
+# Elle reste utilisée comme variable DESCRIPTIVE des segments....................
+
 features = [
     "log_ca_median", "coef_variation",
     "ouvert_dimanche", "uplift_promo", "ratio_samedi_hp",
@@ -134,7 +130,7 @@ for k in ks:
     inerties.append(km.inertia_)
     silhouettes.append(silhouette_score(X_scaled, lab))
 
-K = 3  # choix argumenté : voir lecture dans le README (coude + silhouette + métier)
+K = 3  # choix argumenté : vous pouvez lire les arguments dans le README 
 print(f"\n=== Choix de k ===")
 for k, i, s in zip(ks, inerties, silhouettes):
     marque = "  <-- retenu" if k == K else ""
@@ -306,8 +302,7 @@ fig, axes = plt.subplots(n_lignes, n_cols,
                          figsize=(4.3 * n_cols, 3.5 * n_lignes))
 axes = np.atleast_1d(axes).ravel()
 
-# On masque les panneaux inutilisés si le nombre de variables n'est pas
-# un multiple du nombre de colonnes.
+# On masque les panneaux inutilisés si le nombre de variables n'est pas un multiple du nombre de colonnes.
 for ax_vide in axes[len(features):]:
     ax_vide.set_visible(False)
 
@@ -355,9 +350,9 @@ print("\n=== Figures écrites ===")
 for f in sorted(FIG.glob("*.png")):
     print(" ", f.name)
 
-# ================================================================
-# 9. Fichier de contrôle (à comparer avec les valeurs du README)
-# ================================================================
+# ===========================
+# 9. Fichier de contrôle 
+# ===========================
 sil_k = silhouettes[ks.index(K)]
 
 controle = {
