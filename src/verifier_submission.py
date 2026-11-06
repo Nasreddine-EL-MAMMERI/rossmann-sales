@@ -84,7 +84,7 @@ print("\n=== 4. Cohérence avec Open de test.csv ===")
 ctrl = test[["Id", "Store", "Date", "Open"]].merge(
     sub, on="Id", how="left", validate="one_to_one"
 )
-ctrl["Open"] = ctrl["Open"].fillna(1)  # hypothèse documentée : Store 622 -> ouvert
+ctrl["Open"] = ctrl["Open"].fillna(1)  # hypothèse : Store 622 -> ouvert
 
 fermes = ctrl["Open"] == 0
 ouverts = ctrl["Open"] == 1
