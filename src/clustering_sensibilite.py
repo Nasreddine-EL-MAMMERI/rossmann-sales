@@ -1,6 +1,6 @@
 """Analyse de sensibilité de la segmentation.
 
-Question traitée : la redondance entre coef_variation (0.82), uplift_promo
+On veut verifier si : la redondance entre coef_variation (0.82), uplift_promo
 et ratio_samedi_hp (-0.68) sur-pondère l'axe "dépendance promotionnelle".
 Le découpage survit-il si on retire une de ces variables ?
 
@@ -33,9 +33,9 @@ FIG.mkdir(exist_ok=True)
 K = 3
 SEED = 42
 
-# ================================================================
-# 1. Variables (mêmes définitions que clustering_final.py)
-# ================================================================
+# ==========================
+# 1. Variables 
+# ===========================
 profil = pd.read_csv(ROOT / "profil_magasin_prepare.csv")
 
 train = pd.read_csv(
