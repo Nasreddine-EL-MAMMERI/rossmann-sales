@@ -1,4 +1,9 @@
-"""Figures des parties 1 (descriptif) et 2 (prédiction).
+"""
+Régénère les figures de publication des parties 1 et 2.
+
+Les analyses exploratoires (SQL, EDA) sont menées en interactif.
+Ce script reconstruit les figures affichées dans le README à partir
+des données brutes, afin qu'elles restent reproductibles.
 
 Produit quatre figures, numérotées à la suite de celles du clustering :
 
@@ -7,8 +12,7 @@ Produit quatre figures, numérotées à la suite de celles du clustering :
   09_predit_vs_reel.png      nuage hexbin des prédictions contre les ventes réelles
   10_erreur_jour_semaine.png RMSPE par jour de semaine sur la fenêtre de validation
 
-Les figures 09 et 10 nécessitent de réentraîner le modèle Ridge
-(quelques minutes sur 800 000 lignes).
+).
 """
 
 from pathlib import Path
