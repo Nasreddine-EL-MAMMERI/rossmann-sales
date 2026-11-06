@@ -73,7 +73,7 @@ open_manquant = test.loc[
 print("\nLignes du test où Open est manquant :")
 print(open_manquant.to_string(index=False))
 
-#magasin622
+#magasin_622
 print("\nTest — toutes les lignes du magasin 622 :")
 print(
     test.loc[
@@ -171,7 +171,7 @@ print("\n--- Ridge ---")
 print(f"RMSPE : {rmspe_ridge:.2%} (baseline : {rmspe:.2%})")
 print(f"RMSE  : {rmse_ridge:.2f} € (baseline : {rmse:.2f} €)")
 
-#le model ameliore rmspe mais pas trop on va diagnistiquer ou sa trompe 
+#le model ameliore rmspe mais pas trop on va diagnàstiquer ou il se trompe 
 diagnostic = valid_eval[
     ["StoreType", "DayOfWeek", "Promo", "Sales"]
 ].copy()
@@ -217,7 +217,7 @@ croisement["RMSPE_%"] = (
 print("\n--- Erreurs par jour et promo ---")
 print(croisement.round(2).to_string())
 
-#l'effet jourde semaine -promo ensemble pas séparé 
+#l'effet jour de semaineXpromo ensemble pas séparés 
 X_train_jp = X_train.copy()
 X_valid_jp = X_valid.copy()
 
@@ -371,7 +371,7 @@ print(
     f"{rmspe_type_jour:.2%} | {rmse_type_jour:.2f} €"
 )
 
-#le dernier modele ameliore clairement rmspe et rmse verifions si il n'as pas deterioré les autres variables 
+#le dernier modele ameliore clairement RMSPE et RMSE verifions si il n'a pas deterioré les autres variables 
 
 comparaison_type_jour = valid_eval[
     ["DayOfWeek", "StoreType", "Sales"]
@@ -398,7 +398,7 @@ resume = comparaison_type_jour.groupby(
 print("\n--- Effet de Type_Jour par jour et type ---")
 print(resume.round(2).to_string())
 
-# le meme modele sur la periode de 27 avril au 13 juin 2015 pour voir si il est stable sur la periode de test
+# le meme modele sur la periode du 27 avril au 13 juin 2015 pour voir si il est stable sur la periode de test
 
 def construire_features(part):
     X = part[
@@ -419,7 +419,7 @@ def construire_features(part):
 
 
 debut_validation_2 = pd.Timestamp("2015-04-27")
-fin_validation_2 = pd.Timestamp("2015-06-14")  # borne exclusive
+fin_validation_2 = pd.Timestamp("2015-06-14")  
 
 train_fit_2 = df.loc[
     (df["Date"] < debut_validation_2)
@@ -476,7 +476,7 @@ print(f"Ridge interactions : {rmspe_modele_2:.2%} | {rmse_modele_2:.2f} €")
 # le modele est stable sur d'autres periode futures 
 
 ##réentraîner sur tout le train et prédire le test
-#open manquantes sont imputées à 1 (ouvert) comme demontré avant :
+#open manquantes sont imputées à 1 (ouvert)  
 # Réentraînement du modèle retenu sur toutes les ventes ouvertes positives
 train_final = df.loc[
     (df["Open"] == 1) & (df["Sales"] > 0)
@@ -502,7 +502,7 @@ test_final = test.merge(
 
 assert len(test_final) == len(test)
 
-# Hypothèse documentée : les Open manquants concernent Store 622,
+# Hypothèse verifiée: les Open manquants concernent Store 622,
 # dont l'historique indique une ouverture les jours concernés.
 open_manquant = test_final["Open"].isna()
 
@@ -527,7 +527,7 @@ test_final.loc[masque_ouvert, "Sales"] = np.maximum(
     0
 )
 
-# Fichier de prédictions au format Kaggle
+# Fichier de prédictions (pour Kaggle)
 submission = (
     test_final[["Id", "Sales"]]
     .sort_values("Id")
