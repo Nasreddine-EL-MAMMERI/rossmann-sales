@@ -1,7 +1,7 @@
 import duckdb
 from pathlib import Path
 
-RACINE = Path(__file__).resolve().parent  # dossier du script (même leçon que OUT !)
+RACINE = Path(__file__).resolve().parent 
 
 con = duckdb.connect(str(RACINE / "rossmann.duckdb"))
 con.execute(f"CREATE OR REPLACE VIEW train AS SELECT * FROM '{(RACINE / 'train.csv').as_posix()}'")
@@ -14,5 +14,5 @@ print(f"{len(requetes)} requête(s) trouvée(s)")
 for i, req in enumerate(requetes, 1):
     res = con.execute(req)
     print(f"--- Requête {i} ---")
-    print(res.df().to_string())  # DataFrame pandas : tableau aligné
+    print(res.df().to_string())  
     print()
